@@ -118,9 +118,9 @@ h1 {
 	background-size: cover;
 }
 @media (orientation: portrait) {
-	.game-score {
+	/*.game-score {
 		margin: 150px 0 20px;
-	}
+	}*/
 	.game-board div.tile {
 		flex-basis: 25%;
 		height: 12vh;

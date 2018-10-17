@@ -1,9 +1,8 @@
 const cardsFruit = ['apricots', 'apricots', 'bananas', 'bananas', 'blackberries', 'blackberries', 'blueberries', 'blueberries', 'cherries', 'cherries', 'gooseberries', 'gooseberries', 'kiwi', 'kiwi', 'lime', 'lime', 'pears', 'pears', 'plums', 'plums', 'raseberries', 'raseberries', 'strawberries', 'strawberries' ];
-let cards = document.querySelectorAll('div.tile')
-//zmiana node list na tablicę
-cards = [...cards]; //24
+let cards = document.querySelectorAll('div.tile');
+cards = [...cards];
 const startTime = new Date().getTime();
-
+let score =''
 let activeCard = '';
 const activeCards = [];
 
@@ -25,49 +24,41 @@ const clickCard = function() {
 			card.removeEventListener('click', clickCard)
 		})
 		activeCards[1] = activeCard;
+
 		setTimeout(function () {
 			if (activeCards[0].className === activeCards[1].className) {
-				console.log('wygrana');
 				activeCards.forEach(card => card.classList.add('off'))
 				gameResult++;
-				cards = cards.filter(card => card.classList.contains('off'))
+				score.innerHTML = gameResult;
+				cards = cards.filter(card => !card.classList.contains('off'))
 				if (gameResult == gamePairs) {
 					const endTime = new Date().getTime();
 					const gameTime = (endTime - startTime)/1000
 					alert(`Udało się! Twój wynik to ${gameTime} sekund`)
-					location. reload();
+					location.reload();
 				}
 			}
 			else { 
-				console.log('przegrana')
 				activeCards.forEach(card => card.classList.add('hidden'))
 			}
 			activeCard ='';
 			activeCards.length = 0;
 			cards.forEach(card => card.addEventListener('click', clickCard))
-
-		}, 500)
-		
-	}
-		
-	
+		}, 500)		
+	}	
 };
 
 const init = function() {
 	cards.forEach(card => {
-		//losowanie indeksu tablicy
 		const position = Math.floor(Math.random() * cardsFruit.length);
 		card.classList.add(cardsFruit[position]);
-		//usuwa nam koktetnry elelemt
 		cardsFruit.splice(position, 1);
 	})
-
 	setTimeout(function() {
 		cards.forEach(card => {
 			card.classList.add('hidden')
 			card.addEventListener('click', clickCard)
 		})
 	}, 2000)
-}
-
-init()
+};
+init();
