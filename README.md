@@ -1,5 +1,6 @@
 # Memory Game 
 
+The application created using HTML, CSS and JavaScript.
 
 ## Description
 
