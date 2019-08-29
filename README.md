@@ -1,4 +1,4 @@
-# Memory Game 
+![LOGO](./images/icon.png) # Memory Game 
 
 The application created using HTML, CSS and JavaScript.
 
